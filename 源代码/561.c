@@ -9,6 +9,8 @@ int arrayPairSum(int* nums, int numsSize){
     int store[20001] = {0};
     int sum = 0;
 
+    int *tmp = (int*) malloc(numsSize * sizeof(int));
+
     //初始化哈希数组
     //memset(store,0,20001);
     for (int i = 0; i < numsSize; i++)
@@ -17,26 +19,22 @@ int arrayPairSum(int* nums, int numsSize){
         store[10000 + nums[i]] += 1;
     }
 
-    int t = 0;
-    for (int i = 1; i <= 20001; )
+    //int t = 0;
+    for (int i = 1, j = 0; i <= 20001 && j < numsSize; i++)
     {
         if (store[i] != 0)
         {
-            //当相同的个数为奇数时
-            if (store[i] % 2 != 0)
+            for (int k = 0; k < store[i]; k++)
             {
-                if (store[t] == 0)
-                   t = i;
-                else
-                {
-                    sum += t - 10000;
-                    t = i + 1;
-                    i++;
-                }
+                tmp[j++] = i - 10000;
             }
-            
+
         }
-        i++;
+    }
+
+    for (int i = 0; i < numsSize; i+=2)
+    {
+        sum += tmp[i];
     }
 
     return sum;
