@@ -1,7 +1,7 @@
 # 忽略 .out Linux可执行文件
 
-.out
+*.out
 
 # 忽略 .dSYM 内存测试文件
 
-.dSYM
+*.dSYM
