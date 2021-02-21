@@ -1,5 +1,6 @@
 /*
  * 【leetcode】71题代码 存档
+ * 存在问题
  * */
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,8 +10,11 @@ char * simplifyPath(char * path){
     char *s = (char*) malloc(3000 * sizeof(char));
     int top = 0;    //栈的栈顶下标
     int cnt = 0;    //字符串遍历计数
-    int length = 0, length_t = 0;     //当前目录的长度
-    int flag = 0;
+    int length = 0;     //当前目录中非'.'字符的数量
+    int length_t = 0;     //当前目录中'.'的数量
+    int *st = (int*) malloc(1000 * sizeof(int));
+    int topt = 0;
+    //int flag = 0;
 
     if (NULL == path)
     {
@@ -25,6 +29,7 @@ char * simplifyPath(char * path){
                 length_t++;
             else if (path[cnt] == '/')
             {
+                st[topt++] = length + length_t;
                 if (top == 0)
                     s[top++] = path[cnt];
                 else 
@@ -39,8 +44,8 @@ char * simplifyPath(char * path){
                         //cnt++;
                         if (top != 0){
                             top -= 2;
-                            while(s[top] != '/')
-                                top--;    
+                            top -= st[topt - 1];
+                            topt--;
                         }
                         
                     } 

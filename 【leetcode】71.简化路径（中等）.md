@@ -52,6 +52,14 @@ path 是一个有效的 Unix 风格绝对路径。
 
 ## 代码
 
+我自己的代码：
+
+```c++
+
+```
+
+其他人的题解实现代码：
+
 ```c++
 char * simplifyPath(char * path){
     char *stack[100];
@@ -84,6 +92,9 @@ char * simplifyPath(char * path){
 其实没啥的，就是利用了strtok这个函数
 
 ## 总结
+
+有strtok这么好的字符串分割函数，就别想不开用别的办法了。
+自己动手实现一个strtok函数都好。
 
 ## 测试程序
 
